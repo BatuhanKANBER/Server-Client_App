@@ -30,14 +30,16 @@ public class ClientHandler extends Thread {
         }
 
         try {
-            line = reader.readLine();
-            while (!line.equals("EXIT")) {
 
+            do {
+
+                line = reader.readLine();
                 writer.println(line);
                 writer.flush();
                 System.out.println("Response to Client  :  " + line);
-                line = reader.readLine();
-            }
+
+            } while (!line.equals("EXIT"));
+
         } catch (IOException exception) {
 
             System.err.println(exception.getMessage() + ": RESPONSE ERROR");

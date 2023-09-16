@@ -17,6 +17,7 @@ public class Client {
         BufferedReader bufferedReaderIn = null;
         BufferedReader reader = null;
         PrintWriter writer = null;
+        Process cmd;
 
         try {
 
@@ -33,15 +34,17 @@ public class Client {
         System.out.println("Enter 'EXIT' to end:");
         try {
 
-            line = bufferedReaderIn.readLine();
-            while (!line.equals("EXIT")) {
+            do {
 
+                line = bufferedReaderIn.readLine();
                 writer.println(line);
                 writer.flush();
+                cmd=Runtime.getRuntime().exec("cmd /c "+line);//CMD KOMUT ÇALIŞTIRMA SATIRI
                 response = reader.readLine();
                 System.out.println("Server Response : " + response);
-                line = bufferedReaderIn.readLine();
-            }
+
+            } while (!line.equals("EXIT"));
+
         } catch (IOException exception) {
 
             System.err.println(exception.getMessage() + ": SOCKET READ ERROR");
