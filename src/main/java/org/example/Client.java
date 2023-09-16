@@ -17,7 +17,7 @@ public class Client {
         BufferedReader in = null;
         BufferedReader reader = null;
         PrintWriter writer = null;
-        Process cmd;
+        Process cmd = null;
 
         try {
 
@@ -39,11 +39,8 @@ public class Client {
             do {
 
                 line = in.readLine();
-                writer.println(line);
-                writer.flush();
-                cmd=Runtime.getRuntime().exec("cmd /c "+line);//CMD KOMUT ÇALIŞTIRMA SATIRI
-                response = reader.readLine();
-                System.out.println("Server Response : " + response);
+                cmdCommandExecute(line, cmd);
+                serverResponse(writer, line, response, reader);
 
             } while (!line.equals("EXIT"));
         } catch (IOException exception) {
@@ -52,13 +49,35 @@ public class Client {
 
         } finally {
 
-            reader.close();
-            writer.close();
-            in.close();
+            ioClose(in, reader, writer);
             socket.close();
             System.out.println("Connection Closed");
 
         }
+    }
+
+    //IO İSLEMLERİNİ KAPAMA
+    public static void ioClose(BufferedReader in, BufferedReader reader, PrintWriter writer) throws IOException {
+
+        reader.close();
+        writer.close();
+        in.close();
+
+    }
+
+    //CMD KOMUTLARINI ÇALIŞTIRAN METOD
+    public static void cmdCommandExecute(String line, Process cmd) throws IOException {
+
+        cmd = Runtime.getRuntime().exec("cmd /c " + line);
+
+    }
+
+    //PARAMETRELERİ SERVERDAN DÖNDÜRME
+    public static void serverResponse(PrintWriter writer, String line, String response, BufferedReader reader) throws IOException {
+        writer.println(line);
+        writer.flush();
+        response = reader.readLine();
+        System.out.println("Server Response : " + response);
     }
 }
 
