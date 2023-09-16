@@ -14,6 +14,7 @@ public class ClientHandler extends Thread {
     private Socket socket = null;
 
     public ClientHandler(Socket socket) {
+
         this.socket = socket;
     }
 
@@ -32,22 +33,16 @@ public class ClientHandler extends Thread {
         }
 
         try {
-
             do {
 
-                line = reader.readLine();
-                writer.println(line);
-                writer.flush();
-                System.out.println("Response to Client  :  " + line);
+                responseToClient();
 
             } while (!line.equals("EXIT"));
-
         } catch (IOException exception) {
 
             System.err.println(exception.getMessage() + ": RESPONSE ERROR");
 
         } catch (NullPointerException exception) {
-
 
             System.out.println("Connection Closing...");
 
@@ -68,5 +63,14 @@ public class ClientHandler extends Thread {
 
             }
         }
+    }
+
+    public void responseToClient() throws IOException {
+
+        line = reader.readLine();
+        writer.println(line);
+        writer.flush();
+        System.out.println("Response to Client  :  " + line);
+
     }
 }
