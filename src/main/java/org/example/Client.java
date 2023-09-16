@@ -65,7 +65,7 @@ public class Client {
 
     }
 
-    //CMD KOMUTLARINI ÇALIŞTIRAN METOD
+    //CMD KOMUTLARINI ÇALIŞTIRAN METHOD
     public static void cmdCommandExecute(String line, Process cmd) throws IOException {
 
         cmd = Runtime.getRuntime().exec("cmd /c " + line);
