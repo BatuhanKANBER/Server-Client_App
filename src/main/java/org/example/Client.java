@@ -32,7 +32,7 @@ public class Client {
 
         }
 
-        System.out.println("Client address : " + address + "/" + socket.getLocalPort());
+        System.out.println("Client address : " + address + "/" + socket.getLocalPort());//CLIENTIN ADRES BİLGİSİ
         System.out.println("Enter 'EXIT' to end:");
 
         try {
