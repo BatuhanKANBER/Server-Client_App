@@ -15,15 +15,15 @@ public class Client {
         String line = null;
         String response = null;
         BufferedReader bufferedReaderIn = null;
-        BufferedReader serverResponse = null;
-        PrintWriter outPutStream = null;
+        BufferedReader reader = null;
+        PrintWriter writer = null;
 
         try {
 
             socket = new Socket(address, Server.PORT);
             bufferedReaderIn = new BufferedReader(new InputStreamReader(System.in));
-            serverResponse = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            outPutStream = new PrintWriter(socket.getOutputStream());
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream());
         } catch (IOException exception) {
 
             System.err.print(exception.getMessage());
@@ -36,9 +36,9 @@ public class Client {
             line = bufferedReaderIn.readLine();
             while (!line.equals("EXIT")) {
 
-                outPutStream.println(line);
-                outPutStream.flush();
-                response = serverResponse.readLine();
+                writer.println(line);
+                writer.flush();
+                response = reader.readLine();
                 System.out.println("Server Response : " + response);
                 line = bufferedReaderIn.readLine();
             }
@@ -47,8 +47,8 @@ public class Client {
             System.err.println(exception.getMessage() + ": SOCKET READ ERROR");
         } finally {
 
-            serverResponse.close();
-            outPutStream.close();
+            reader.close();
+            writer.close();
             bufferedReaderIn.close();
             socket.close();
             System.out.println("Connection Closed");

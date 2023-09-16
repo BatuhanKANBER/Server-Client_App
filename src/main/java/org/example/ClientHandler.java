@@ -9,8 +9,8 @@ import java.net.Socket;
 public class ClientHandler extends Thread {
 
     String line = null;
-    BufferedReader serverResponse = null;
-    PrintWriter outPutStream = null;
+    BufferedReader reader = null;
+    PrintWriter writer = null;
     Socket socket = null;
 
     public ClientHandler(Socket socket) {
@@ -22,21 +22,21 @@ public class ClientHandler extends Thread {
 
         try {
 
-            serverResponse = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            outPutStream = new PrintWriter(socket.getOutputStream());
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream());
         } catch (IOException exception) {
 
             System.out.println(exception.getMessage());
         }
 
         try {
-            line = serverResponse.readLine();
+            line = reader.readLine();
             while (!line.equals("EXIT")) {
 
-                outPutStream.println(line);
-                outPutStream.flush();
+                writer.println(line);
+                writer.flush();
                 System.out.println("Response to Client  :  " + line);
-                line = serverResponse.readLine();
+                line = reader.readLine();
             }
         } catch (IOException exception) {
 
