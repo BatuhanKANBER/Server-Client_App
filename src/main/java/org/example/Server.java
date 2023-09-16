@@ -32,7 +32,7 @@ public class Server {
                 socket = serverSocket.accept();
                 ClientHandler clientHandler = new ClientHandler(socket);
                 clientHandler.start();
-                System.out.println("Client "+clientHandler.getName()+" Connection Successfully...");
+                System.out.println("Client " + clientHandler.getName() + " Connection Successfully...");
 
             } catch (Exception exception) {
 
