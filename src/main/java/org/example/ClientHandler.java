@@ -8,10 +8,10 @@ import java.net.Socket;
 
 public class ClientHandler extends Thread {
 
-    String line = null;
-    BufferedReader reader = null;
-    PrintWriter writer = null;
-    Socket socket = null;
+    private String line = null;
+    private BufferedReader reader = null;
+    private PrintWriter writer = null;
+    private Socket socket = null;
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
@@ -23,10 +23,12 @@ public class ClientHandler extends Thread {
         try {
 
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
             writer = new PrintWriter(socket.getOutputStream());
         } catch (IOException exception) {
 
             System.out.println(exception.getMessage());
+
         }
 
         try {
@@ -43,21 +45,27 @@ public class ClientHandler extends Thread {
         } catch (IOException exception) {
 
             System.err.println(exception.getMessage() + ": RESPONSE ERROR");
+
         } catch (NullPointerException exception) {
 
+
             System.out.println("Connection Closing...");
+
         } finally {
             try {
 
                 System.out.println("Client " + this.getName() + " is disconnected.");
+
                 if (socket != null) {
 
                     socket.close();
                     System.out.println("Socket is closed");
+
                 }
             } catch (IOException exception) {
 
                 System.err.println(exception.getMessage() + ": SOCKET CLOSE ERROR");
+
             }
         }
     }

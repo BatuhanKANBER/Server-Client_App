@@ -15,21 +15,31 @@ public class Server {
         ServerSocket serverSocket = null;
 
         try {
+
             serverSocket = new ServerSocket(PORT);
             System.out.println("Connection Successfully...");
+
         } catch (IOException exception) {
+
             System.err.println(exception.getMessage() + ": SERVER ERROR!");
+
         }
 
         while (true) {
+
             try {
+
                 socket = serverSocket.accept();
                 ClientHandler clientHandler = new ClientHandler(socket);
                 clientHandler.start();
                 System.out.println("Client "+clientHandler.getName()+" Connection Successfully...");
+
             } catch (Exception exception) {
+
                 System.err.println(exception.getMessage() + ": CONNECTION ERROR!");
+
             }
+
         }
     }
 }
