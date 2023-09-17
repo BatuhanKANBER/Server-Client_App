@@ -2,6 +2,7 @@
 
 We start our project by creating Client, ClientHandler and Server Classes.
 
+
 *Client Handler Class*
 
 We start writing our ClientHandler class by first adding a constructor method. And we give a socket to the parameter of this constructor method.
