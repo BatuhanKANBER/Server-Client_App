@@ -29,4 +29,4 @@ And we complete our Client class.
 
 *Project Demo*
 
-![](images/demo.gif)
+
