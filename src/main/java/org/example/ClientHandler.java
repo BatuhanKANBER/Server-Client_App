@@ -18,6 +18,10 @@ public class ClientHandler extends Thread {
         this.socket = socket;
     }
 
+    public ClientHandler() {
+
+    }
+
     @Override
     public void run() {
 
