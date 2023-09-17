@@ -6,4 +6,4 @@ Then, we call the socket object and access this socket object to the server we c
 Then we call the ClientHandler class and give the socket to its parameter.
 Then, we give the created clientHandler object the start() method and thus provide multiple client access to the server side.
 
-<img src="image/1.png" alt="Server Class">
+![](images/1.png)
