@@ -12,3 +12,5 @@ We get the address information of our client by using the InetAddress object in 
 Then, we perform input and output operations using BufferedReader and PrintWriter objects.
 Then, we write the function that enables the use of Windows commands using the Process object.
 And we complete our Client class.
+
+![](images/2.png)
