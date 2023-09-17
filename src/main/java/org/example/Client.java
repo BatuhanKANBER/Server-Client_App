@@ -66,18 +66,19 @@ public class Client {
     }
 
     //CMD KOMUTLARINI ÇALIŞTIRAN METHOD
-    public static void cmdCommandExecute(String line, Process cmd) throws IOException {
+    public static Object cmdCommandExecute(String line, Process cmd) throws IOException {
 
         cmd = Runtime.getRuntime().exec("cmd /c " + line);
-
+        return cmd;
     }
 
     //PARAMETRELERİ SERVERDAN DÖNDÜRME
-    public static void serverResponse(PrintWriter writer, String line, String response, BufferedReader reader) throws IOException {
+    public static String serverResponse(PrintWriter writer, String line, String response, BufferedReader reader) throws IOException {
         writer.println(line);
         writer.flush();
         response = reader.readLine();
         System.out.println("Server Response : " + response);
+        return response;
     }
 }
 

@@ -65,12 +65,13 @@ public class ClientHandler extends Thread {
         }
     }
 
-    public void responseToClient() throws IOException {
+    //PARAMETRELERİ CLIENTA GÖNDEREN METHOD
+    public String responseToClient() throws IOException {
 
         line = reader.readLine();
         writer.println(line);
         writer.flush();
         System.out.println("Response to Client  :  " + line);
-
+        return line;
     }
 }
