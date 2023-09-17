@@ -27,6 +27,6 @@ And we complete our Client class.
 
 ![](images/2.png)
 
-*DEMO*
+*Project Demo*
 
 ![](images/demo.gif)
